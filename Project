@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cyber Security Strength Checker</title>
+
+<style>
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f2027, #2c5364);
+    color: white;
+    text-align: center;
+}
+
+/* Marquee side animation */
+.side-marquee {
+    position: fixed;
+    left: -300px;
+    top: 40%;
+    width: 300px;
+    background: #00c6ff;
+    color: black;
+    font-weight: bold;
+    padding: 10px;
+    transform: rotate(-90deg);
+    box-shadow: 0 0 20px cyan;
+    transition: 1s;
+}
+
+.side-marquee.show {
+    left: -120px;
+}
+
+/* 3D Card */
+.container {
+    margin-top: 100px;
+    display: inline-block;
+    padding: 30px;
+    background: rgba(0,0,0,0.6);
+    border-radius: 20px;
+    box-shadow: 0 0 20px cyan;
+    transform: perspective(500px) rotateX(5deg);
+}
+
+/* Input */
+input {
+    padding: 10px;
+    width: 250px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+}
+
+/* Button */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: cyan;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: yellow;
+}
+
+/* Strength text */
+#result {
+    margin-top: 15px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Info box */
+.info {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    box-shadow: 0 0 10px white;
+}
+
+</style>
+
+</head>
+<body onclick="showMarquee()">
+
+<!-- Side Marquee -->
+<div class="side-marquee" id="marqueeBox">
+<marquee direction="up">CYBER SECURITY STRENGTH CHECKER</marquee>
+</div>
+
+<!-- Main container -->
+<div class="container">
+
+<h1>
+<marquee>Cyber Security Strength Checker</marquee>
+</h1>
+
+<input type="password" id="password" placeholder="Enter Password">
+<br><br>
+
+<button onclick="checkStrength()">Check Strength</button>
+
+<div id="result"></div>
+
+<div class="info">
+
+<h2>Cyber Security Strength Checker Information</h2>
+
+<p>
+Cyber Security Strength Checker ek tool hai jo password ki security level check karta hai.
+Ye batata hai ki password Weak, Medium ya Strong hai.
+Strong password hackers se protection deta hai.
+</p>
+
+<h2>Password kyu important hai?</h2>
+
+<p>
+Password aapke account ko unauthorized access se bachata hai.
+Strong password use karne se hacking ka risk kam ho jata hai.
+Isliye hamesha strong password use karna chahiye jisme:
+</p>
+
+<ul>
+<li>Uppercase letter</li>
+<li>Lowercase letter</li>
+<li>Number</li>
+<li>Special symbol</li>
+</ul>
+
+</div>
+
+</div>
+
+<script>
+
+function checkStrength()
+{
+    var password = document.getElementById("password").value;
+    var result = document.getElementById("result");
+
+    var strength = 0;
+
+    if(password.length >= 6)
+        strength++;
+
+    if(password.match(/[A-Z]/))
+        strength++;
+
+    if(password.match(/[0-9]/))
+        strength++;
+
+    if(password.match(/[@#$%^&*!]/))
+        strength++;
+
+    if(strength <= 1)
+    {
+        result.innerHTML = "Weak Password";
+        result.style.color = "red";
+    }
+    else if(strength == 2 || strength == 3)
+    {
+        result.innerHTML = "Medium Password";
+        result.style.color = "orange";
+    }
+    else
+    {
+        result.innerHTML = "Strong Password";
+        result.style.color = "lime";
+    }
+}
+
+function showMarquee()
+{
+    document.getElementById("marqueeBox").classList.add("show");
+}
+
+</script>
+
+</body>
+</html>
